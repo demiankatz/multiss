@@ -20,28 +20,30 @@
  */
 color vgapal[] = new color[256];
 boolean points[][];
+PGraphics canvas;
 
 void setup()
 {
   fullScreen();
-  background(0);
+  noSmooth();
+  canvas = createGraphics(640, 480);
   frameRate(24);
   initPal();
   
-  points = new boolean[width][height];
+  points = new boolean[canvas.width][canvas.height];
   
-  int x = (int)(width / 2);
+  int x = (int)(canvas.width / 2);
   int y = 1;
-  for (int i1 = 0; i1 < width; i1 += 2) {
-    for (int i2 = 0; i2 < height; i2 += 2) {
+  for (int i1 = 0; i1 < canvas.width; i1 += 2) {
+    for (int i2 = 0; i2 < canvas.height; i2 += 2) {
       switch ((int)random(3))
       {
         case 0 : x = (int)(x / 2); y = (int)(y / 2); break;
-        case 1 : x += (int)(width / 2); x = (int)(x / 2); y += height; y = (int)(y / 2); break;
-        case 2 : x += width; x = (int)(x / 2); y = (int)(y / 2); break;
+        case 1 : x += (int)(canvas.width / 2); x = (int)(x / 2); y += canvas.height; y = (int)(y / 2); break;
+        case 2 : x += canvas.width; x = (int)(x / 2); y = (int)(y / 2); break;
       }
-      if (x >= 0 && x < width && y >= 0 && y < height) {
-        points[x][(height - 1) - y] = true;
+      if (x >= 0 && x < canvas.width && y >= 0 && y < canvas.height) {
+        points[x][(canvas.height - 1) - y] = true;
       }
     }
   }
@@ -49,15 +51,19 @@ void setup()
 
 void draw()
 {
-  for (int y = 0; y < height; y++) {
-    stroke(vgapal[y % 256]);
-    line(0, y, width, y);
-    for (int x = 0; x < width; x++) {
+  canvas.beginDraw();
+  canvas.background(0);
+  for (int y = 0; y < canvas.height; y++) {
+    canvas.stroke(vgapal[y % 256]);
+    canvas.line(0, y, canvas.width, y);
+    for (int x = 0; x < canvas.width; x++) {
       if (points[x][y]) {
-        set(x, y, vgapal[255 - (y % 256)]);
+        canvas.set(x, y, vgapal[255 - (y % 256)]);
       }
     }
   }
+  canvas.endDraw();
+  image(canvas, 0, 0, width, height);
   rotatePal();
 }
 

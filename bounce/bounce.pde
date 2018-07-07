@@ -20,11 +20,13 @@
  */
 int numBalls = 750;
 Ball[] balls = new Ball[numBalls];
+PGraphics canvas;
 
 void setup()
 {
-  fullScreen( );
-  background(0);
+  fullScreen();
+  noSmooth();
+  canvas = createGraphics(320, 200);
   frameRate(24);
   for (int x = 0; x < numBalls; x++) {
     balls[x] = new Ball();
@@ -33,9 +35,13 @@ void setup()
 
 void draw()
 {
+  canvas.beginDraw();
+  canvas.background(0);
   for (int x = 0; x < numBalls; x++) {
     balls[x].move();
   }
+  canvas.endDraw();
+  image(canvas, 0, 0, width, height);
 }
 
 void keyPressed()
@@ -60,8 +66,8 @@ class Ball
       deltaX = random(7) - 3;
       deltaY = random(7) - 3;
     } while ((int)deltaX == 0 && (int)deltaY == 0);
-    x = random(width);
-    y = random(height);
+    x = random(canvas.width);
+    y = random(canvas.height);
   }
   
   void move()
@@ -76,8 +82,8 @@ class Ball
       deltaX = -deltaX;
     }
 
-    if (x > width) {
-      x = width;
+    if (x > canvas.width) {
+      x = canvas.width;
       deltaX = -deltaX;
     }
 
@@ -86,11 +92,11 @@ class Ball
       deltaY = -deltaY;
     }
 
-    if (y > height) {
-      y = height;
+    if (y > canvas.height) {
+      y = canvas.height;
       deltaY = -deltaY;
     }
     
-    set((int)x, (int)y, ballColor);
+    canvas.set((int)x, (int)y, ballColor);
   }
 }
