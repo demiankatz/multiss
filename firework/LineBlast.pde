@@ -47,10 +47,10 @@ class LineBlast extends Sprite
       parts[i].display(x, y);
     }
     if (step > lines) {
-      stroke(0);
-      fill(0);
+      canvas.stroke(0);
+      canvas.fill(0);
       int d = 2 * (step - lines + 1);
-      ellipse(x, y, d, d);
+      canvas.ellipse(x, y, d, d);
     }
     return true;
   }
@@ -69,11 +69,11 @@ class LineBlast extends Sprite
     
     void display(int x, int y)
     {
-      stroke(c);
-      line (x, y, x + x1, y + y1);
-      line (x, y, x - x1, y + y1);
-      line (x, y, x + x1, y - y1);
-      line (x, y, x - x1, y - y1);
+      canvas.stroke(c);
+      canvas.line(x, y, x + x1, y + y1);
+      canvas.line(x, y, x - x1, y + y1);
+      canvas.line(x, y, x + x1, y - y1);
+      canvas.line(x, y, x - x1, y - y1);
     }
   }
 }

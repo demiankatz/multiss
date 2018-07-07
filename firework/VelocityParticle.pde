@@ -43,16 +43,16 @@ class VelocityParticle extends Sprite
       x = 0; 
       d = (int)(-d / 2);
     }
-    if (x >= width) {
-      x = (width - 1);
+    if (x >= canvas.width) {
+      x = (canvas.width - 1);
       d = (int)(-d / 2);
     }
-    if (y > height - 10) {
+    if (y > canvas.height - 10) {
       v = (int)(-v / 2);
       y++;
     }
-    set(x, y, c);
-    if (y >= (height - 1)) {
+    canvas.set(x, y, c);
+    if (y >= (canvas.height - 1)) {
       return false;
     }
     return true;

@@ -43,9 +43,9 @@ class RoundBlast extends Sprite
     
     int ringsToDraw = (step <= maxrad) ? step : maxrad - (step - maxrad);
     for (int i = 0; i < ringsToDraw; i++) {
-      stroke(rings[i]);
-      fill(rings[i]);
-      ellipse(x, y, 2 * (i + 1), 2 * (i + 1));
+      canvas.stroke(rings[i]);
+      canvas.fill(rings[i]);
+      canvas.ellipse(x, y, 2 * (i + 1), 2 * (i + 1));
     }
     
     if (step >= 2 * maxrad) {

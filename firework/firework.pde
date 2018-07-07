@@ -22,30 +22,36 @@ color vgapal[] = new color[256];
 World world = new World();
 final int gravity = 1;
 final int blastTypes = 4;
-final int maxRockets = 100;
+final int maxRockets = 10;
+PGraphics canvas;
 
 void setup()
 {
   fullScreen();
-  background(0);
+  noSmooth();
+  canvas = createGraphics(320, 200);
   frameRate(24);
   initPal();
 }
 
 void draw()
 {
-  if (world.count() == 0) {
+  if (world.count() < maxRockets) {
     int r = (int)random(maxRockets) + 1;
-    int x = (int)(width / 2);
-    int y = height - 20;
+    int x = (int)(canvas.width / 2);
+    int y = canvas.height - 20;
     int d, v;
     for (int i = 0; i < r; i++) {
       d = (int)random(9) - 4;
-      v = -(int)random((int)(height / 20)) - 9;
+      v = -(int)random((int)(canvas.height / 20)) - 9;
       world.add(new Rocket(x, y, d, v));
     }
   }
+  canvas.beginDraw();
+  canvas.background(0);
   world.redraw();
+  canvas.endDraw();
+  image(canvas, 0, 0, width, height);
 }
 
 void keyPressed()

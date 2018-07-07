@@ -38,14 +38,14 @@ class StarryBlast extends Sprite
     
     int pointsToDraw = (step <= maxSize) ? step : maxSize - (step - maxSize);
     for (int i = 0; i < pointsToDraw; i++) {
-      set(x + i, y, palette[i]);
-      set(x - i, y, palette[i]);
-      set(x, y + i, palette[i]);
-      set(x, y - i, palette[i]);
-      set(x + i - 4, y - i + 4, palette[i]);
-      set(x - i + 4, y + i - 4, palette[i]);
-      set(x - i + 4, y - i + 4, palette[i]);
-      set(x + i - 4, y + i - 4, palette[i]);
+      canvas.set(x + i, y, palette[i]);
+      canvas.set(x - i, y, palette[i]);
+      canvas.set(x, y + i, palette[i]);
+      canvas.set(x, y - i, palette[i]);
+      canvas.set(x + i - 4, y - i + 4, palette[i]);
+      canvas.set(x - i + 4, y + i - 4, palette[i]);
+      canvas.set(x - i + 4, y - i + 4, palette[i]);
+      canvas.set(x + i - 4, y + i - 4, palette[i]);
     }
     
     if (step >= 2 * maxSize) {

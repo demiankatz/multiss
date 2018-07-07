@@ -23,7 +23,7 @@ class RocketBlast extends Sprite
   RocketBlast(int x, int y)
   {
     // If we're close to the top of the screen, we don't want to keep shooting rockets...
-    if (y < (int)(height / 20)) {
+    if (y < (int)(canvas.height / 20)) {
       world.add(new ScatterBlast(x, y));
       return;
     }

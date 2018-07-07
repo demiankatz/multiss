@@ -29,25 +29,25 @@ class World
   
   void redrawBackdrop()
   {
-    stroke(0);
-    fill(0);
-    rect(0, 0, width, height);
+    //canvas.stroke(0);
+    //canvas.fill(0);
+    //canvas.rect(0, 0, canvas.width, canvas.height);
     
     int i;
     int c = 190;
-    for (i = height - 10; i < height; i++) {
-      stroke(vgapal[(int)(c++ / 2) - 75]);
-      line (0, i, width, i);
+    for (i = canvas.height - 10; i < canvas.height; i++) {
+      canvas.stroke(vgapal[(int)(c++ / 2) - 75]);
+      canvas.line(0, i, canvas.width, i);
     }
-    int halfWidth = (int)(width / 2);
+    int halfWidth = (int)(canvas.width / 2);
     c = 159;
     for (i = halfWidth - 1; i < halfWidth + 2; i++) {
-      stroke(vgapal[c++ - 134]);
-      line (i, height - 20, i, height - 11);
-      stroke(vgapal[19]);
-      line (i - 1, height - 10, i - 4, height - 5);
+      canvas.stroke(vgapal[c++ - 134]);
+      canvas.line(i, canvas.height - 20, i, canvas.height - 11);
+      canvas.stroke(vgapal[19]);
+      canvas.line(i - 1, canvas.height - 10, i - 4, canvas.height - 5);
     }
-    set (halfWidth, height - 20, 0);
+    canvas.set(halfWidth, canvas.height - 20, 0);
   }
   
   void add(Object o)

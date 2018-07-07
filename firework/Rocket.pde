@@ -49,11 +49,11 @@ class Rocket extends Sprite
     y += velocity;
     velocity += gravity;
     x += dir;
-    stroke((int)random(256), (int)random(256), (int)random(256));
-    line (x, y, oldX, oldY);
-    stroke(255);
-    line (x - 1, y, x + 1, y);
-    line (x, y - 1, x, y + 1);
+    canvas.stroke((int)random(256), (int)random(256), (int)random(256));
+    canvas.line(x, y, oldX, oldY);
+    canvas.stroke(255);
+    canvas.line (x - 1, y, x + 1, y);
+    canvas.line (x, y - 1, x, y + 1);
     if (velocity > endpoint) {
       switch(blastType) {
         case 0:
